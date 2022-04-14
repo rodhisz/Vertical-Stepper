@@ -11,3 +11,51 @@
     --fg: hsl(var(--hue), 10%, 10%);
     font-size: calc(20px + (30 - 20) * (100vw - 320px) / (1280 - 320));
 }
+
+body, button {
+    font: 1em/ 1.5 Inter, sans-serif;
+}
+
+body{
+    background-color: var(--bg);
+    color: var(--fg);
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    transition: background-color 0.3s;
+}
+
+.stepper{
+    background-color: var(--fg);
+    border-radius: 1em;
+    box-shadow: 0 0.75em 1em hsla(0, 0%, 0%, 0.2);
+    color: var(--bg);
+    font-weight: bold;
+    overflow: hidden;
+    padding: 00.75em 0.375em;
+    position: relative;
+    width: 6em;
+    height: 3em;
+    transition: 
+        background-color 0.3s;
+        color: 0.3s;
+        transform: 0.15s ease-in-out;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: #0000;
+}
+
+.stepper:active {
+    transform: scale(0.95);
+    transition-delay: 0s, 0s, 0.15s;
+}
+
+.stepper_btn-area,.stepper_btn-area::before, .stepper_btn-click, .stepper_value {
+    position: absolute;
+}
+
+.stepper_btn-area,.stepper_btn-area::before, .stepper_btn-click {
+    display: block;
+    top: 0;
+    left: 0;
+}
