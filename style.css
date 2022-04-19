@@ -13,10 +13,10 @@
 }
 
 body, button {
-    font: 1em/ 1.5 Inter, sans-serif;
+    font: 1em/1.5 Inter, sans-serif;
 }
 
-body{
+body {
     background-color: var(--bg);
     color: var(--fg);
     height: 100vh;
@@ -25,21 +25,21 @@ body{
     transition: background-color 0.3s;
 }
 
-.stepper{
+.stepper {
     background-color: var(--fg);
     border-radius: 1em;
     box-shadow: 0 0.75em 1em hsla(0, 0%, 0%, 0.2);
     color: var(--bg);
     font-weight: bold;
     overflow: hidden;
-    padding: 00.75em 0.375em;
+    padding: 0.75em 0.375em;
     position: relative;
     width: 6em;
     height: 3em;
-    transition: 
-        background-color 0.3s;
-        color: 0.3s;
-        transform: 0.15s ease-in-out;
+    transition:
+        background-color 0.3s,
+        color 0.3s,
+        transform 0.15s ease-in-out;
     -webkit-appearance: none;
     appearance: none;
     -webkit-tap-highlight-color: #0000;
@@ -50,27 +50,32 @@ body{
     transition-delay: 0s, 0s, 0.15s;
 }
 
-.stepper_btn-area,.stepper_btn-area:before, .stepper_btn-click, .stepper_value {
+.stepper__btn-area,
+.stepper__btn-area:before,
+.stepper__btn-click,
+.stepper__value {
     position: absolute;
 }
 
-.stepper_btn-area,.stepper_btn-area:before, .stepper_btn-click {
+.stepper__btn-area,
+.stepper__btn-area:before,
+.stepper__btn-click {
     display: block;
     top: 0;
     left: 0;
 }
 
-.stepper_btn-area{
+.stepper__btn-area {
     width: 2em;
     height: 3em;
 }
 
-.stepper_btn-area + .stepper_btn-area{
+.stepper__btn-area+.stepper__btn-area {
     right: 0;
     left: auto;
 }
 
-.stepper_btn-area:before {
+.stepper__btn-area:before {
     border-radius: 50%;
     box-shadow: 0 0 0 0 var(--bg) inset;
     content: "";
@@ -83,21 +88,21 @@ body{
     transition: all 0.4s ease-out;
 }
 
-.stepper_btn-area:not(:disabled):active::before{
-    box-shadow: 0 0 0 lem var(--bg) inset;
+.stepper__btn-area:not(:disabled):active:before {
+    box-shadow: 0 0 0 1em var(--bg) inset;
     opacity: 0.25;
     transform: scale(1);
-    transition: 
-        oppacity 0.2s ease-out,
-        transform 0.2s ease-out ;
+    transition:
+        opacity 0.2s ease-out,
+        transform 0.2s ease-out;
 }
 
-.stepper_btn-click {
+.stepper__btn-click {
     width: 100%;
     height: 100%;
 }
 
-.stepper_value{
+.stepper__value {
     animation-duration: 0.3s;
     animation-timing-function: ease-in-out;
     display: inline-block;
@@ -112,68 +117,151 @@ body{
     user-select: none;
 }
 
-.stepper_value[data-pos = "off-left"],
-.stepper_value[data-pos = "prev"],
-.stepper_value[data-pos = "next"],
-.stepper_value[data-pos = "off-right"] {
+.stepper__value[data-pos="off-left"],
+.stepper__value[data-pos="prev"],
+.stepper__value[data-pos="next"],
+.stepper__value[data-pos="off-right"] {
     opacity: 0.5;
 }
 
-.stepper_value[data-pos = "off-left"] {
+.stepper__value[data-pos="off-left"] {
     transform: translateX(-2.67em) scale(0.5);
 }
 
-.stepper_value[data-pos = "prev"] {
-    transform: translateX(-1.33) scale(0.5);
+.stepper__value[data-pos="prev"] {
+    transform: translateX(-1.33em) scale(0.5);
 }
 
-.stepper_value[data-pos = "cur"] {
+.stepper__value[data-pos="cur"] {
     transform: translateX(0);
 }
 
-.stepper_value[data-pos = "next"] {
-    transform: translateX(-1.33) scale(0.5);
+.stepper__value[data-pos="next"] {
+    transform: translateX(1.33em) scale(0.5);
 }
 
-.stepper_value[data-pos = "off-right"] {
-    transform: translateX(-2.67em) scale(0.5);
+.stepper__value[data-pos="off-right"] {
+    transform: translateX(2.67em) scale(0.5);
 }
 
-.stepper--move-left .stepper_value[data-pos = "off-left"]{
-    animation-name: moveOfLeft;
+.stepper--move-left .stepper__value[data-pos="off-left"] {
+    animation-name: moveOffLeft;
 }
 
-.stepper--move-left .stepper_value[data-pos = "prev"]{
-    animation-name: moveToLeft;
+.stepper--move-left .stepper__value[data-pos="prev"] {
+    animation-name: middleToLeft;
 }
 
-.stepper--move-left .stepper_value[data-pos = "cur"]{
+.stepper--move-left .stepper__value[data-pos="cur"] {
     animation-name: rightToMiddle;
 }
 
-.stepper--move-left .stepper_value[data-pos = "next"]{
+.stepper--move-left .stepper__value[data-pos="next"] {
     animation-name: comeInRight;
 }
 
-.stepper--move-right .stepper_value[data-pos = "prev"]{
-    animation-name: comeInLeft;
+.stepper--move-right .stepper__value[data-pos="prev"] {
+    animation-name: comeInLeft
 }
 
-.stepper--move-right .stepper_value[data-pos = "cur"]{
-    animation-name: leftToMiddle;
+.stepper--move-right .stepper__value[data-pos="cur"] {
+    animation-name: leftToMiddle
 }
 
-.stepper--move-right .stepper_value[data-pos = "next"]{
+.stepper--move-right .stepper__value[data-pos="next"] {
     animation-name: middleToRight;
 }
 
-.stepper--move-right .stepper_value[data-pos = "off-right"]{
-    animation-name: moveOfRight;
+.stepper--move-right .stepper__value[data-pos="off-right"] {
+    animation-name: moveOffRight;
 }
 
-@media (prefers-color-schme :dark){
-    :root{
-        --bg : hsl(var(--hue), 10%, 20%);
-        --fg : hsl(var(--hue), 10%, 90%)
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: hsl(var(--hue), 10%, 20%);
+        --fg: hsl(var(--hue), 10%, 90%);
+    }
+}
+
+/* Animation */
+
+@keyframes comeInRight {
+    from {
+        transform: translateX(2.67em) scale(0.5) ;
+    } 
+    to {
+        transform: translateX(1.33em) scale(0.5) ;
+    }
+}
+
+@keyframes rightToMiddle {
+    from {
+        opacity: 0.5;
+        transform: translateX(1.33em) scale(0.5) ;
+    } 
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1) ;
+    }
+}
+
+@keyframes middleToLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0) scale(1) ;
+    } 
+    to {
+        opacity: 0.5;
+        transform: translateX(-1.33) scale(0.5) ;
+    }
+}
+
+@keyframes moveOfLeft {
+    from {
+        transform: translateX(-1.33) scale(0.5) ;
+    } 
+    to {
+        transform: translateX(-2.67em) scale(0.5) ;
+    }
+}
+
+@keyframes comeInLeft {
+    from {
+        transform: translateX(-2.67em) scale(0.5) ;
+    } 
+    to {
+        transform: translateX(-1.33) scale(0.5) ;
+    }
+}
+
+@keyframes leftToMiddle {
+    from {
+        opacity: 0.5;
+        transform: translateX(-1.33) scale(0.5) ;
+    } 
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1) ;
+    }
+}
+
+@keyframes middleToRight {
+    from {
+        opacity: 1;
+        transform: translateX(0) scale(1) ;
+    } 
+    to {
+        opacity: 0.5;
+        transform: translateX(1.33) scale(0.5) ;
+    }
+}
+
+@keyframes moveOfRight {
+    from {
+        transform: translateX(1.33) scale(0.5) ;
+    } 
+    to {
+        transform: translateX(2.67em) scale(0.5) ;
     }
 }
